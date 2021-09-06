@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Hero } from 'src/app/models/Hero';
 import { HeroService } from 'src/app/services/hero.service';
 
@@ -24,9 +25,11 @@ export class HeroesComponent implements OnInit {
     return true;
   }
   
-  getHeroes() {
-    // passando os heroes para o heroes array por meio da requisição do Hero Service
-    this.heroes = this.heroService.getHeroes();
+  getHeroes(): void {
+    // recebe o observable e espera a resposta do remote server com os dados
+    let observable: Observable<Hero[]> = this.heroService.getHeroes()
+    // assim que a requisição tiver sucesso, executa a callback, atribuindo à "this.heroes" o retorno "heroes" de getHeroes() do serviço
+    observable.subscribe(heroesRequested => this.heroes = heroesRequested);
   }
 
   ngOnInit(): void {
