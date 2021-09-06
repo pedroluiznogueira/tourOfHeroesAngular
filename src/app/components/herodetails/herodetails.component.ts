@@ -12,7 +12,7 @@ import { HeroService } from 'src/app/services/hero.service';
   styleUrls: ['./herodetails.component.css']
 })
 export class HerodetailsComponent implements OnInit {
-  hero: Hero | undefined;
+  hero?: Hero | undefined;
 
   @Input() selectedHeroInput!: Hero;
 
@@ -23,13 +23,21 @@ export class HerodetailsComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-      // pegando as características da route atual
-      const routeParams = this.route.snapshot.paramMap; 
-      // pegando a informação da rota atual que seja um (heroId == hero.id, vindo do html) e passando de string para number 
-      const heroIdFromRoute = Number(routeParams.get('heroId'));
-  
-      // procutando no HEROES array um hero que tenha o id igual ao id atual (heroIdFromRoute)
-      this.hero = <Hero>HEROES.find(hero => hero.id === heroIdFromRoute);
+    // boa prática, chamar a função aqui
+    this.getHero();
+  }
+
+  // preciso de uma função que me retorne um Hero ao comparar o id, diferentemente de getHeroes
+  getHero(): void {
+    // guardando informações da rota atual
+    const routeParams = this.route.snapshot.paramMap;
+    // pegando apenas o id atual da rota mapeada acima, e transformando-o de string -> number
+    const heroIdFromRoute = Number(routeParams.get('heroId'));
+
+    // guardando o observable que vai ser retornado na requisição
+    const observable: Observable<Hero> = this.heroService.getHero(heroIdFromRoute);
+    // atribuindo o retorno da requisição ao atributo hero
+    observable.subscribe(heroRequested => this.hero = heroRequested);
   }
 
 }

@@ -19,10 +19,10 @@ export class HeroService {
     return heroes;
   }
 
-  getHero(id: number): Observable<Hero> {
-    const hero = HEROES.find(h => h.id === id)!;
-    this.messageService.add(`HeroService: fetched hero id=${id}`);
-
+  getHero(heroIdFromRoute: number): Observable<Hero> {
+    const hero = HEROES.find(hero => hero.id === heroIdFromRoute)!;
+    this.messageService.add(`The hero with id ${heroIdFromRoute} was fetched`);
+    
     return of(hero);
   }
 }
