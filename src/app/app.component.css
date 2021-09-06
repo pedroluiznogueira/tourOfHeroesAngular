@@ -10,6 +10,7 @@ h1 {
     background-color: #e8e8e8;
     color: #3d3d3d;
     border-radius: 4px;
+    margin: 10px;
   }
   
   nav a:hover {
