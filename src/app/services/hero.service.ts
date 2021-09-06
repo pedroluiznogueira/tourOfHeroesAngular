@@ -15,14 +15,13 @@ export class HeroService {
   // injetando o message service
   constructor(
     private messageService: MessageService,
-    private httpClient: HttpClient) { }
+    private http: HttpClient) { }
 
-  // adaptando a função para que retorne um Observable
-  getHeroes(): Observable<Hero[]> {
-    const heroes = of(HEROES);
-    this.messageService.add("Sucessfully fetched heroes");
-    return heroes;
-  }
+    /** GET heroes from the server */
+    getHeroes(): Observable<Hero[]> {
+      // tanto of() quanto http.get() retornam um Observable<Hero[]> 
+      return this.http.get<Hero[]>(this.heroesUrl)
+    }
 
   getHero(heroIdFromRoute: number): Observable<Hero> {
     const hero = HEROES.find(hero => hero.id === heroIdFromRoute)!;
