@@ -1,5 +1,7 @@
-<div>My Top Heroes</div>
+<h2>My Top Heroes</h2>
 
-<div *ngFor="let hero of heroes | slice:0:4 ; index as i">
-    <h2>{{hero.name}}</h2>
+<div class="heroes-menu">
+    <a *ngFor="let hero of heroes">
+        {{hero.name}}
+    </a>
 </div>
