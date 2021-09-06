@@ -26,7 +26,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
       { path: 'heroes', component: HeroesComponent },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'heroDetails/:heroId', component: HerodetailsComponent },
-      { path: '', redirectTo: '/dashboard', pathMatch: 'full' }   
+      { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
     ]) 
   ],
   providers: [],

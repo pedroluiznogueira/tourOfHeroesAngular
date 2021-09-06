@@ -40,4 +40,9 @@ export class HerodetailsComponent implements OnInit {
     observable.subscribe(heroRequested => this.hero = heroRequested);
   }
 
+  // usando a API JS do browser para navegar para a "página" anterior
+  previousComponent(): void {
+    this.location.back();
+  }
+
 }
