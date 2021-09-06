@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HeroesComponent } from './components/heroes/heroes.component';
 import { HerodetailsComponent } from './components/herodetails/herodetails.component';
 import { MessagesComponent } from './components/messages/messages.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,10 @@ import { MessagesComponent } from './components/messages/messages.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot([
+      { path: 'heroes', component: HeroesComponent }   
+    ]) 
   ],
   providers: [],
   bootstrap: [AppComponent]
