@@ -7,11 +7,5 @@
 
 
 <div *ngIf="onSelectHero">
-    <h2>{{ selectedHero.name }} Details</h2>
-
-    <div>Name: <span>{{ selectedHero.name }}</span></div>
-    <div>Id: <span>{{ selectedHero.id }}</span></div>
-
-    <label for="name">Name: </label>
-    <input type="text" [(ngModel)]="selectedHero.name">
+    <app-herodetails [selectedHeroInput]="selectedHero"></app-herodetails>
 </div>
