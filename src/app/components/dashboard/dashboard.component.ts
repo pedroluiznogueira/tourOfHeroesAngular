@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
   getHeroes() {
     let observable: Observable<Hero[]> = this.heroService.getHeroes();
     // limitando ao array na requisição
-    observable.subscribe(heroesRequested => this.heroes = heroesRequested.slice(0, 4));
+    observable.subscribe(heroesRequested => this.heroes = heroesRequested.slice(3, 7));
   }
   
   ngOnInit(): void {

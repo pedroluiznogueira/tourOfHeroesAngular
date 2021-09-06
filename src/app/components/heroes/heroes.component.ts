@@ -12,19 +12,11 @@ export class HeroesComponent implements OnInit {
 
   // array de heroes vazio enquanto não recebeu os dados
   heroes: Hero[] = [];
-  selectedHero!: Hero;
 
   // injetando o Hero Service
   constructor(private heroService: HeroService) { 
   }
-
-  
-  onSelectHero(hero: Hero): boolean {
-    this.selectedHero = hero;
     
-    return true;
-  }
-  
   getHeroes(): void {
     // recebe o observable e espera a resposta do remote server com os dados
     let observable: Observable<Hero[]> = this.heroService.getHeroes()
