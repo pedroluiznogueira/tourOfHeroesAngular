@@ -16,7 +16,7 @@ export class HeroesComponent implements OnInit {
   // injetando o Hero Service
   constructor(private heroService: HeroService) { 
   }
-    
+
   getHeroes(): void {
     // recebe o observable e espera a resposta do remote server com os dados
     let observable: Observable<Hero[]> = this.heroService.getHeroes()
@@ -27,5 +27,19 @@ export class HeroesComponent implements OnInit {
   ngOnInit(): void {
     // é uma boa prática chamar essa função aqui
     this.getHeroes();
+  }
+
+  add(name: string): void {
+    name = name.trim();
+    if (!name) { return; }
+    this.heroService.addHero({ name } as Hero)
+      .subscribe(hero => {
+        this.heroes.push(hero);
+      });
+  }
+
+  delete(hero: Hero): void {
+    this.heroes = this.heroes.filter(h => h !== hero);
+    this.heroService.deleteHero(hero.id).subscribe();
   }
 }
