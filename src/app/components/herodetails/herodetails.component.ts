@@ -41,13 +41,13 @@ export class HerodetailsComponent implements OnInit {
   }
 
   // usando a API JS do browser para navegar para a "página" anterior
-  previousComponent(): void {
+  goBack(): void {
     this.location.back();
   }
 
   save(): void {
     if (this.hero) {
-      this.heroService.updateHero(this.hero).subscribe(() => this.previousComponent());
+      this.heroService.updateHero(this.hero).subscribe(() => this.goBack());
     }
   }
 
